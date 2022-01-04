@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>부트스트랩</title>
+</head>
+<body>
+  <div>
+    <ul>
+      <li id="list1">1. 웹 프로그래밍 기초</li>
+      <li id="list2">2. DB연결 웹 애플리케이션</li>
+      <li id="list3">3. 웹 애플리케이션 개발 1/4</li>
+    </ul>
+  </div>
+</body>
+
+<script>
+
+// DOM 탐색 속성
+// childNodes : element의 자식 node의 node 리스트를 반환(텍스트노드, 주석노드 포함)
+
+var ul = document.querySelector("ul");
+var ulChildNodes = ul.childNodes;
+
+for(var i=0; i<ulChildNodes.length; i++){
+    console.log(ulChildNodes[i]);
+}
+
+
+
+// firstChild : element의 첫 번째 자식 node를 반환
+var ulFirstChild = ul.firstChild;
+console.log("ulFirstChild > ", ulFirstChild); // 개행이 되었므로 textNode가 선택됨
+
+
+
+// firstElementChild : 첫 번째 자식 element를 반환
+var ulFirstElementChild = ul.firstElementChild;
+console.log("ulFirstElementChild > ", ulFirstElementChild);
+
+
+
+// parentElement : element의 부모 element 반환
+var ulParentElement = ul.parentElement;
+console.log("ulParentElement > ", ulParentElement);
+
+
+
+// nextSibling : 동일한 node tree 레벨에서 다음 node를 반환
+var list1 = document.querySelector("#list1");
+var listNextSibling = list1.nextSibling;
+
+console.log("listNextSibling > ", listNextSibling); // 개행문자로 인해 textNode 선택됨
+
+
+
+// nextElementSibling : 동일한 node tree 레벨에서 다음 element를 반환
+var listNextElementSibling = list1.nextElementSibling;
+console.log("listNextElementSibling > ", listNextElementSibling);
+
+
+</script>
+</html>
