@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>부트스트랩</title>
+</head>
+<body>
+  <div id="div1">
+    <div id="div2">
+      <ul>
+        <li id="list1">1. 웹 프로그래밍 기초</li>
+        <li id="list2">2. DB연결 웹 애플리케이션</li>
+        <li id="list3">3. 웹 애플리케이션 개발 1/4</li>
+      </ul>
+    </div>
+  </div>
+  <button id="clickButton">Click!</button>
+</body>
+
+<script>
+
+// DOM 조작 메소드
+// removeChild() : element의 자식 node 제거
+
+var clickButton = document.getElementById("clickButton");
+
+function removeChildFn(){
+  var ul = document.querySelector("ul");
+  ul.removeChild(ul.firstElementChild);
+}
+
+
+
+// appendChild() : 특정 node를 마지막 자식 node로 추가
+
+function appendChildFn(){
+  var ul = document.querySelector("ul");
+
+  var liNode = document.createElement("LI");
+  var textNode = document.createTextNode("4. 웹 애플리케이션 만들기");
+
+  liNode.appendChild(textNode);
+
+  ul.appendChild(textNode);
+}
+
+
+
+// insertBefore() : 기존 자식node 앞에 새 자식 node를 추가
+
+function insertBeforeFn(){
+  var ul = document.querySelector("ul");
+
+  var newLiNode = document.createElement("LI");
+  var textNode = document.createTextNode("4. 웹 애플리케이션 만들기");
+  newLiNode.appendChild(textNode);
+
+  ul.insertBefore(newLiNode, ul.firstElementChild);
+}
+
+
+
+// cloneNode(Boolean deep) : node를 복제
+// Parameter Value : deep(true:속성 및 자식노드까지 복제, false(default):본인 속성만 복제)
+
+function cloneNodeFn(){
+  var ul = document.querySelector("ul");
+
+  var cloneNode = document.getElementById("list1").cloneNode(true);
+  ul.insertBefore(cloneNode, ul.firstElementChild);
+}
+
+
+
+// replaceChild() : element의 자식 node를 새로운 node로 대체 
+
+function replaceChildFn(){
+
+  var newTextNode = document.createTextNode("0.새로운 텍스트 노드");
+  var liNode = document.getElementById("list1");
+  
+  liNode.replaceChild(newTextNode, liNode.firstChild);
+
+}
+
+
+
+// closest(selectors) : 상위로 올라가면서 가장 가까운 element를 반환
+// Parameter Value : selectors
+function closestFn(){
+
+  var liNode = document.getElementById("list1");
+  console.log(liNode.closest("div").getAttribute("id"));   // 결과: div2      
+
+}
+
+
+
+
+clickButton.addEventListener("click", closestFn);
+
+
+</script>
+</html>

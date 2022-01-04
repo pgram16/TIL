@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>부트스트랩</title>
+</head>
+<body>
+  <div id="div1">
+    <div id="div2">
+      <ul>
+        <li id="list1">1. 웹 프로그래밍 기초</li>
+        <li id="list2">2. DB연결 웹 애플리케이션</li>
+        <li id="list3">3. 웹 애플리케이션 개발 1/4</li>
+      </ul>
+    </div>
+  </div>
+  <button id="clickButton">Click!</button>
+</body>
+
+<script>
+
+// HTML을 문자열로 처리해주는 DOM 속성/메소드
+// innerText : 지정된 노드와 모든 자손의 텍스트 내용을 설정하거나 반환
+
+function innerTextFn(){
+
+  var list3Text = document.getElementById("list3").innerText;
+  document.getElementById("list1").innerText = list3Text;
+
+}
+
+
+
+// innerHTML : 지정된 element의 내부 html을 설정하거나 반환
+
+function innerHTMLFn(){
+   var list3Html = document.querySelector("#list3").innerHTML;
+   var ul = document.querySelector("ul");
+   ul.innerHTML = list3Html;
+}
+
+
+
+// insertAdjacentHTML() : HTML로 텍스트를 지정된 위치에 삽입
+// Parameter Value (position, text)
+// position ("afterbegin" "afterend" "beforebegin" "beforeend")
+function insertAdjacentHTMLFn(){
+  var list3 = document.querySelector("#list3");
+  list3.insertAdjacentHTML("beforeend", "<li>4. 네번째</li>")
+}
+
+
+
+
+clickButton.addEventListener("click", insertAdjacentHTMLFn);
+
+
+</script>
+</html>
