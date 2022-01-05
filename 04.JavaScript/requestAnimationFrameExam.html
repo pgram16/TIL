@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>title</title>
+<style>
+.outside {
+    position: relative;
+    background-color: gold;
+    padding: 10px;
+    width: 100px;
+}
+</style>
+</head>
+<body>
+
+    <div class="outside">안녕하세요.</div>
+
+</body>
+<script>
+
+var start, previousTimeStamp;
+var el = document.querySelector(".outside");
+
+function moveToRight(timestamp){
+    if(start === undefined)
+        start = timestamp;
+
+    const elapsed = timestamp - start;
+
+    // 0.1px/ms 속도로 2초(2000ms)동안 오른쪽으로 이동한다.
+    if(previousTimeStamp !== timestamp){
+        const count = Math.min(0.1*elapsed, 200);
+        el.style.transform = 'translateX(' + count + 'px)';
+    }
+
+    if(elapsed < 2000){
+        previousTimeStamp = timestamp;
+        requestAnimationFrame(moveToRight);
+    }
+}
+
+requestAnimationFrame(moveToRight);
+
+</script>
+</html>
