@@ -1,0 +1,107 @@
+<html>
+    <head>
+        <style>
+            h2{
+                margin: 0px;
+            }
+            nav{
+                height: 40px;
+                padding-top: 20px;
+            }
+            section{
+                clear: both;
+                background-color: antiquewhite;
+                border: 1px solid black;
+            }
+
+            section > div {
+                padding: 20px;
+            }
+            .tab{
+                width: 600px;
+                margin : 10% auto;
+            }
+
+            .nav-title{
+                float: left;
+                width: 24.2%;
+                background-color: antiquewhite;
+                height: 30px;
+                text-align: center;
+                border: 2px solid white;
+                cursor: pointer;
+            }
+
+        </style>
+    </head>
+    <body>
+        
+        <div class="tab">
+            <nav class="tab-nav">
+                <div class="nav-title">crong</div>
+                <div class="nav-title">lee</div>
+                <div class="nav-title">park</div>
+                <div class="nav-title">sky</div>
+            </nav>
+            <section>
+                <div>
+                    <h2 class="name">crong</h2>
+                    <div class="content">sky blue...</div>
+                </div>
+            </section>
+        </div>
+
+        <script id="section-template" type="text/template">
+            <div>
+                <h2 class="name">{name}</h2>
+                <div class="content">{favorites}</div>
+            </div>
+        </script>
+        <script>
+            var elTab = document.querySelector(".tab-nav");
+            elTab.addEventListener("click", eventExecute);
+
+            function sendAjax(){
+                var oReq = new XMLHttpRequest();
+                var data;
+                oReq.addEventListener("load", ()=>{
+                    data = JSON.parse(oReq.responseText);
+                }) 
+                oReq.open("GET", "./python/json.text", false);
+                oReq.send();
+                
+                return data;
+            }
+
+            function templateHTML(){
+                return document.getElementById("section-template").innerText;
+            }
+
+            function setContent(event, data){
+                var targetName = event.target.innerText;
+                var innerHtml = "";
+
+                for(var i=0, len=data.length; i<len; i++){
+                    
+                    if(data[i].name == targetName){
+                        innerHtml = templateHTML().replace("{name}", data[i].name)
+                                                  .replace("{favorites}", data[i].favorites);
+                        
+                        document.querySelector("section").innerHTML = innerHtml;
+
+                        document.querySelector("section").style.backgroundColor = data[i].color;
+
+                        return;
+                    }
+                }
+
+            }
+
+            function eventExecute(event){
+               var data =  sendAjax();
+               setContent(event, data);
+            }
+
+        </script>
+    </body>
+</html>

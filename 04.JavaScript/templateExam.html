@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <style>
+            .title{
+                margin: 20px;;
+            }
+
+            ul{
+                list-style: none;
+            }
+        </style>
+    </head>
+    <body>
+        <button class="button">create new list!</button>
+
+        <h1 class="title">목록</h1>
+        <h3 class="count">갯수 : <span>0</span></h3>
+
+        <ul>
+        </ul>
+
+        <script>
+            var ul = document.querySelector("ul");
+            var count = document.querySelector(".count > span");
+            var elButton = document.querySelector(".button");
+            
+            var listCount=0;
+            var data = {title : "hello", content : "isnviz isn winvlzin owkvibsleibb", name : "Bibian Lee"};
+
+            function addNewLi(){
+
+                var template = document.getElementById("template-list-item").innerText;
+                
+                var innerHtml = template.replace("{title}", data.title)
+                                        .replace("{content}", data.content)
+                                        .replace("{name}", data.name);
+                
+                ul.innerHTML += innerHtml;
+
+                count.innerText = ++listCount;
+            }
+
+            elButton.addEventListener("click", addNewLi);
+
+        </script>
+
+        <script id="template-list-item" type="text/template">
+            <li>
+                <h3>{title}</h3>
+                <div>{content}</div>
+                <div>{name}</div>
+            </li>
+        </script>
+
+    </body>
+
+</html>

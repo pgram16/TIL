@@ -34,7 +34,7 @@
             var lists = document.querySelectorAll("ul > li");
 
             /*
-            event bubbling: 클릭한 지점이 하위 엘리먼트라 하더라도 그것을 감싸고있는 상위 엘리먼트까지 올라가며 이벤트리스너가 있는지 찾는 과정
+            event bubbling: 하위에서 상위 요소의 이벤트 전파 방식
                             따라서 최하위 엘리먼트인 <span>태그를 클릭하더라도 ul에 등록된 click 이벤트가 실행이 된다.
             */
             ul.addEventListener("click", function(evt){
