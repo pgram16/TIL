@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <style>
+            ul{
+                list-style: none;
+                background-color: beige;
+                padding: 10px;       
+                height: 40px;         
+            }
+
+            li{
+                border: 1px solid black;
+                width: 100px;
+                float: left;
+                margin: 5px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li style="background-color: aliceblue;"><span>hi</span></li>
+            <li style="background-color: red;"><span>hello</span></li>
+            <li style="background-color: wheat;"><span>add</span></li>
+            <li style="background-color: goldenrod;"><span>event</span></li>
+            <li style="background-color: gold;"><span>new!</span></li>
+        </ul>
+
+        <p id="log"></p>
+
+        <script>
+            var log = document.getElementById("log");
+            var ul = document.querySelector("ul");
+            var lists = document.querySelectorAll("ul > li");
+
+            /*
+            event bubbling: 클릭한 지점이 하위 엘리먼트라 하더라도 그것을 감싸고있는 상위 엘리먼트까지 올라가며 이벤트리스너가 있는지 찾는 과정
+                            따라서 최하위 엘리먼트인 <span>태그를 클릭하더라도 ul에 등록된 click 이벤트가 실행이 된다.
+            */
+            ul.addEventListener("click", function(evt){
+                
+                console.log("target : " , evt.target , "  currentTarget : " , evt.currentTarget);
+            })
+
+        </script>
+    </body>
+</html>
