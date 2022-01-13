@@ -5,6 +5,8 @@
   <!-- 리스너를 등록하여 root 컨텍스트가 생성되게만든다.
 		루트 웹 어플리케이션 컨텍스트의 디폴트 설정파일은 /WEB-INF/applicationContext.xml이다. 
 		만약 사용할 이름이 다르거나, 설정파일이 여러개인 경우 contextConfigLocation이라는 컨텍스트 파라미터를 추가하여 설정해준다.
+		
+		웹 환경과 관련 없는 빈(예를 들어 서비스 계층, 데이터 액세스 계층 등)은 root 컨텍스트에 등록한다.
    -->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
