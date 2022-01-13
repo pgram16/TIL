@@ -12,6 +12,9 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
   
+  <!-- DispatcherServlet은 기본적으로 WEB-INF/ 디렉터리에 위치한 [서블릿이름]-servlet.xml 파일 로부터 스프링 설정 정보를 읽어온다. (start-servlet.xml 참고)
+             이파일에서는 HandlerMapping, Controller, ViewResolver,View등의 빈을 설정하게 된다. -->
+  
 	<servlet-mapping>
 		<servlet-name>start</servlet-name>
 		<url-pattern>/</url-pattern>
