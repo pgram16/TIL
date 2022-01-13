@@ -3,4 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<!-- 간단한 클래스를 만들었고 이를 root context의 빈으로 등록하였다. -->
+	<bean id="helloSpring" class="kr.or.connect.bean.HelloSpring"/>
+	
+
 </beans>
