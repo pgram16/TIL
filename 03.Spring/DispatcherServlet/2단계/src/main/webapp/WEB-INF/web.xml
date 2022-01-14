@@ -15,7 +15,18 @@
   
   <!-- 프레젠테이션 계층의 빈을 등록할 컨텍스트
   		DispatcherServlet은 초기화 시에 서블릿 레벨의 웹어플리케이션 컨텍스트를 생성해준다.
-  		서블릿 컨텍스트가 사용할 설정파일 이름은 서블릿 이름뒤에 -servlet.xml을 붙인것을 디폴트로한다.
+  		이 때 서블릿 컨텍스트가 사용할 설정파일 이름은 서블릿 이름뒤에 -servlet.xml을 붙인것을 디폴트로한다.
+  		
+  		서블릿 컨텍스트의 부모 컨텍스트는 root 컨텍스트다.
+  		자식 컨텍스트는 부모 컨텍스트의 빈을 참조할 수 있으므로 root 컨텍스트의 HelloSpring 빈을 DI 받을 수 있다.
+   		
+   		DispatcherServlet을 경우에 따라 2개이상 설정할 수 있는데 이 경우에는 각각의 DispatcherServlet의 ApplicationContext가 각각 독립적이기 때문에
+   		각각의 설정 파일에서 생성한 빈을 서로 사용할 수없다.
+   		이런 경우 두 컨텍스트가 동시에 필요한 빈은 root컨텍스트에 등록하여 사용할 수 있다.
+   		
+   		ContextLoaderListener와 DispatcherServlet은 각각 ApplicationContext를 생성하는데,
+   		ContextLoaderListener가 생성하는 컨켁스트가 root 컨텍스트가되고 DispatcherServlet이 생성한 인스턴스는 자식 컨텍스트가 된다.   		
+   
    -->
   <servlet>
   	<servlet-name>start</servlet-name>
