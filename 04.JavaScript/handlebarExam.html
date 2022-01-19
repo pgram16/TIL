@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <style>
+            li { 
+                list-style: none;
+                padding: 2%;
+                margin: 10px;
+                border-top:1px solid;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>handlebar Exam</h2>
+
+        <section class="showGuestBook">
+
+        </section>
+
+        <script type="myTemplate" id="listTemplate">
+            <li>
+             <div>게시자 : {{name}}</div>
+             <div class="content">{{content}}</div>
+             <div>좋아요 갯수 <span> {{like}} </span></div>
+             
+             {{#likes like}}
+                {{like}}
+             {{/likes}}
+
+             <div class="comment">
+               <h3>댓글목록</h3>
+               {{#if comment}}
+                {{#each comment}}
+                    <div>{{@index}}번째 댓글: {{this}}</div>
+                {{/each}}
+               {{else}}
+                <div> 댓글이 아직 없습니다.</div>
+               {{/if}}
+
+             </div>
+          </li>
+        </script>	
+
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        var data = [
+                        {"id" : 88, "name" : "crong", "content" : "새로운글을 올렸어요", "like" : 5, "comment" : ["댓글이다", "잘했어요"]},
+                        {"id" : 28, "name" : "hary", "content" : "전 오늘도 노래를 불렀어요", "like" : 0, "comment" : ["제발고만..","듣고싶네요 그노래"]},
+                        {"id" : 23, "name" : "pororo", "content" : "크롱이 항상 말썽을 피워서 행복해~", "like" : 4, "comment" : []},
+                        {"id" : 5, "name" : "pobi", "content" : "물고기를 한마리도 잡지 못하다니..", "like" : 5, "comment" : ["댓글이다", "멋진글이네요", "잘봤습니다"]}
+                    ];
+
+        Handlebars.registerHelper("likes", function(like){
+            if(like > 4){
+                return "<span>축하해요 좋아요 수가 "+ like + "개 이상입니다.</span>";
+            }
+            else{
+                return "<span>" +like + "개의 좋아요가 있네요.</span>";
+            }
+        });
+
+
+        var template = document.getElementById("listTemplate").innerText;
+        var bindTemplate = Handlebars.compile(template);  //bindTemplate은 메서드다.
+        var resultHTHML = data.reduce(function(prev, next){
+            return prev + bindTemplate(next);
+        }, "");
+
+        
+        document.querySelector(".showGuestBook").innerHTML = resultHTHML;
+    </script>
+</html>
